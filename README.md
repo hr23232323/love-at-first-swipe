@@ -55,7 +55,7 @@ new_df.to_csv('combined_data_no_repeats.csv')
 ```
 
 ## Insights
-| ![Fun vs like image](/Images/fun vs like.png) |
+| ![Fun vs like image](/Images/fun_vs_like.png) |
 |:--:| 
 | *Screenshot of scattered heatmap showing how much the participant liked their date on the x axis, and how fun they thought they were on the y axis. Red points indicate a match and blue points indicate no match. * |
 
