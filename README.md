@@ -118,8 +118,4 @@ The full code can be accessed using this [link to repository](https://github.com
 |:--:| 
 | *Screenshot of bar graph representing the feature importances in the random forest classifier. It can be appreciated that the factors that influence prediction the most are the degree of attractiveness that a person is rated on and how much "fun" they are.* |
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/hr23232323/love-at-first-swipe/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
 
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
