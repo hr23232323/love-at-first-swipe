@@ -8,6 +8,15 @@ The dataset was collected by Columbia Business School from 2002 and 2004 to dete
 
 ## Preprocessing the data
 
+<table>
+  <tr>
+      <td> ![Before image](/Images/before.JPG) </td>
+  </tr>
+  <tr>
+      </td>*Screenshot showing the way data was organized before preprocessing. Note that each row represented one individual and only their partner's ID.* </td>
+  </tr>
+    </table>
+
 | ![Before image](/Images/before.JPG) |
 |:---:| 
 | *Screenshot showing the way data was organized before preprocessing. Note that each row represented one individual and only their partner's ID.* |
