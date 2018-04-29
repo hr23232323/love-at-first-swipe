@@ -86,7 +86,7 @@ In our initial insights, we compared whether the pair had a connection ("Like") 
 
 
 ## Machine Learning
-To design our machine learning algorithm we used random forest classification. We combined the attributes of the two individuals in a pair by adding their respective scores for each other. This enabled us to have a single combined attribute which the machine learning model could then predict based on. An issue that we originally ran into was that the dataset only contained approximately 20% "matches". This was because many more people rejected the people that they met, rather than matched with them. While this represented the real world situation very well, the machine learning model initially was overtrained to predict "no match". We tackled this issue by random sampling an even split between "matches" and "no matches" and trained the classifier on that data. This resulted in an increased prediction of true positives. 
+**To design our machine learning algorithm we used random forest classification.** We combined the attributes of the two individuals in a pair by adding their respective scores for each other. This enabled us to have a single combined attribute which the machine learning model could then predict based on. An issue that we originally ran into was that the dataset only contained approximately 20% "matches". This was because many more people rejected the people that they met, rather than matched with them. While this represented the real world situation very well, the machine learning model initially was overtrained to predict "no match". We tackled this issue by random sampling an even split between "matches" and "no matches" and trained the classifier on that data. This resulted in an increased prediction of true positives. 
 
 An excerpt from our final code for training and prediction can be seen below: 
 
@@ -127,6 +127,6 @@ The full code can be accessed using this [link to repository](https://github.com
 | *Screenshot of chart representing our true positives, true negatives, false positives, and false negatives after running the machine learning.* |
 
 ## Conclusion
-In conclusion, we learned through our research that fun and attractiveness are the two attributes that people consider the most seriously when looking for a romantic partner. This was a finding that was indicated in our early insights after performing our initial data cleansing, and was supported by our machine learning, as shown in feature importances. Additionally, using ten-fold cross validation, we found a mean accuracy of 75.4% when trying to predict whether two people would match.
+In conclusion, we learned through our research that fun and attractiveness are the two attributes that people consider the most seriously when looking for a romantic partner. This was a finding that was indicated in our early insights after performing our initial data cleansing, and was supported by our classifier, as shown in feature importances. **Additionally, using 10-fold cross validation, we found a mean accuracy of 75.4% when trying to predict whether two people would match.**
 
 
