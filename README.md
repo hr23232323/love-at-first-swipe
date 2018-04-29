@@ -112,7 +112,11 @@ y_pred = classifier.predict(X_test)
 The full code can be accessed using this [link to repository](https://github.com/hr23232323/love-at-first-swipe)
 
 
-### Jekyll Themes
+## Feature Importances
+
+| ![Feature Importances](/Images/dating_feature_imp.png) |
+|:--:| 
+| *Screenshot of bar graph representing the feature importances in the random forest classifier. It can be appreciated that the factors that influence prediction the most are the degree of attractiveness that a person is rated on and how much "fun" they are.* |
 
 Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/hr23232323/love-at-first-swipe/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
 
