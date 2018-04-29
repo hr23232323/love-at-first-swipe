@@ -1,4 +1,4 @@
-“title: Love at First Swipe”
+title: Love at First Swipe
 
 ## Welcome to GitHub Pages
 
