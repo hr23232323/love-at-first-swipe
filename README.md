@@ -120,7 +120,11 @@ The full code can be accessed using this [link to repository](https://github.com
 
 ## Confusion Matrix
 
-## Conclusion
+| ![confusion matrix](/Images/confusionmatrix.png) |
+|:--:| 
+| *Screenshot of chart representing our true positives, true negatives, false positives, and false negatives after running the machine learning.* |
 
+## Conclusion
+In conclusion, we learned through our research that fun and attractiveness are the two attributes that people consider the most seriously when looking for a romantic partner. This was a finding that was indicated in our early insights after performing our initial data cleansing, and was supported by our machine learning, as shown in feature importances.
 
 
