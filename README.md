@@ -84,81 +84,11 @@ for index_1, row_1 in dataset.iterrows():
 
 
 ## Machine Learning
-To design our machine learning algorithm we used random forest classification.
+To design our machine learning algorithm we used random forest classification. We combined the attributes of the two individuals in a pair by adding their respective scores for each other. This enabled us to have a single combined attribute which the machine learning model could then predict based on. An issue that we originally ran into was that the dataset only contained approximately 20% "matches". This was because many more people rejected the people that they met, rather than matched with them. While this represented the real world situation very well, the machine learning model initially was overtrained to predict "no match". We tackled this issue by random sampling an even split between "matches" and "no matches" and trained the classifier on that data. This resulted in an increased prediction of true positives. 
+
+An excerpt from our final code for training and prediction can be seen below: 
 
 ```markdown
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
-
-
-import sys
-
-dataset = pd.read_csv('/Users/robertoesquivel/Desktop/combined_data_no_repeats.csv')
-new_df = pd.concat([dataset.iloc[0], dataset.iloc[1]], axis = 0)
-
-#new_df = new_df.T
-n = dataset.shape[0]
-
-dataset.shape
-
-dataset.columns
-
-print('Data Types:')
-for i in dataset.columns:
-    t = dataset[i].dtype
-    if t != float:
-        print(i, t)
-
-
-dataset = dataset[['match',
-       'int_corr', 'samerace', 'age_o', 'attr1_1', 'sinc1_1', 'intel1_1',
-       'fun1_1', 'amb1_1', 'shar1_1', 'attr2_1', 'sinc2_1', 'intel2_1',
-       'fun2_1', 'amb2_1', 'shar2_1', 'attr3_1', 'sinc3_1', 'fun3_1',
-       'intel3_1', 'amb3_1', 'attr', 'sinc', 'intel', 'fun', 'amb',
-       'shar', 'like', 'prob', 'int_corr.1', 'attr1_1.1',
-       'sinc1_1.1', 'intel1_1.1', 'fun1_1.1', 'amb1_1.1', 'shar1_1.1',
-       'attr2_1.1', 'sinc2_1.1', 'intel2_1.1', 'fun2_1.1', 'amb2_1.1',
-       'shar2_1.1', 'attr3_1.1', 'sinc3_1.1', 'fun3_1.1', 'intel3_1.1',
-       'amb3_1.1', 'attr.1', 'sinc.1', 'intel.1', 'fun.1', 'amb.1',
-       'shar.1', 'like.1', 'prob.1']]
-
-dataset['com_attr'] = dataset['attr'] + dataset['attr.1']
-dataset['com_sinc'] = dataset['sinc'] + dataset['sinc.1']
-dataset['com_intel'] = dataset['intel'] + dataset['intel.1']
-dataset['com_fun'] = dataset['fun'] + dataset['fun.1']
-dataset['com_amb'] = dataset['amb'] + dataset['amb.1']
-dataset['com_shar'] = dataset['shar'] + dataset['shar.1']
-dataset['com_like'] = dataset['like'] + dataset['like.1']
-
-c = dataset['match'].sum() / float(len(dataset))
-if c > 0.1:
-    print(c)
-
-dataset = dataset[['match', 'int_corr', 'attr1_1', 'sinc1_1',
-       'intel1_1', 'fun1_1', 'amb1_1', 'shar1_1', 'attr2_1', 'sinc2_1',
-       'intel2_1', 'fun2_1', 'amb2_1', 'shar2_1', 'attr3_1', 'sinc3_1',
-       'fun3_1', 'intel3_1', 'amb3_1', 'attr1_1.1', 'sinc1_1.1',
-       'intel1_1.1', 'fun1_1.1', 'amb1_1.1', 'shar1_1.1', 'attr2_1.1',
-       'sinc2_1.1', 'intel2_1.1', 'fun2_1.1', 'amb2_1.1', 'shar2_1.1',
-       'attr3_1.1', 'sinc3_1.1', 'fun3_1.1', 'intel3_1.1', 'amb3_1.1', 'com_attr', 'com_sinc', 'com_intel', 'com_fun', 'com_amb',
-       'com_shar', 'com_like']]
-
-dataset.shape
-
-X = dataset.iloc[:, 1:44].values
-y = dataset.iloc[:, 0].values
-
-
-X.shape
-
-y.shape
-
-# Splitting the dataset into the Training set and Test set
-from sklearn.cross_validation import train_test_split
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.25, random_state = 0)
-
 # Splitting the dataset into the Training set and Test set
 from sklearn.cross_validation import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.25, random_state = 0)
@@ -174,167 +104,13 @@ from sklearn.ensemble import RandomForestClassifier
 classifier = RandomForestClassifier(n_estimators = 10, criterion = 'entropy', random_state = 0)
 classifier.fit(X_train, y_train)
 
-# Predicting the Test set results
-y_pred = classifier.predict(X_test)
-
-# Making the Confusion Matrix
-from sklearn.metrics import confusion_matrix
-cm = confusion_matrix(y_test, y_pred)
-
-cm
-
-# Applying k-Fold Cross Validation
-from sklearn.model_selection import cross_val_score
-accuracies = cross_val_score(estimator = classifier, X = X_train, y = y_train, cv = 10)
-accuracies.mean()
-accuracies.std()
-
-accuracies
-
-accuracies.mean()
-
-matches = dataset[dataset['match'] == 1]
-
-652 / 3984
-
-balanced_data = dataset.copy()
-
-balanced_data = balanced_data[balanced_data['match'] == 0].sample(n = 652)
-
-balanced_data = pd.concat(objs = [balanced_data, matches])
-
-balanced_data = balanced_data.reset_index()
-
-dataset = balanced_data
-
-dataset.columns
-
-dataset = dataset[['match', 'int_corr', 'attr1_1', 'sinc1_1', 'intel1_1',
-       'fun1_1', 'amb1_1', 'shar1_1', 'attr2_1', 'sinc2_1', 'intel2_1',
-       'fun2_1', 'amb2_1', 'shar2_1', 'attr3_1', 'sinc3_1', 'fun3_1',
-       'intel3_1', 'amb3_1', 'attr1_1.1', 'sinc1_1.1', 'intel1_1.1',
-       'fun1_1.1', 'amb1_1.1', 'shar1_1.1', 'attr2_1.1', 'sinc2_1.1',
-       'intel2_1.1', 'fun2_1.1', 'amb2_1.1', 'shar2_1.1', 'attr3_1.1',
-       'sinc3_1.1', 'fun3_1.1', 'intel3_1.1', 'amb3_1.1', 'com_attr',
-       'com_sinc', 'com_intel', 'com_fun', 'com_amb', 'com_shar', 'com_like']]
-
-dataset
-
-X = dataset.iloc[:, 1:44].values
-y = dataset.iloc[:, 0].values
-
-# Splitting the dataset into the Training set and Test set
-from sklearn.cross_validation import train_test_split
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.25, random_state = 0)
-
-
-# Feature Scaling
-from sklearn.preprocessing import StandardScaler
-sc = StandardScaler()
-X_train = sc.fit_transform(X_train)
-X_test = sc.transform(X_test)
-
-# Fitting Random Forest Classification to the Training set
-from sklearn.ensemble import RandomForestClassifier
-classifier = RandomForestClassifier(n_estimators = 10, criterion = 'entropy', random_state = 0)
-classifier.fit(X_train, y_train)
-
 
 # Predicting the Test set results
 y_pred = classifier.predict(X_test)
-
-# Making the Confusion Matrix
-from sklearn.metrics import confusion_matrix
-cm = confusion_matrix(y_test, y_pred)
-
-cm
-
-accuracies = cross_val_score(estimator = classifier, X = X_train, y = y_train, cv = 10)
-accuracies.mean()
-accuracies.std()
-
-accuracies
-
-accuracies.mean()
-
-classifier.feature_importances_.shape
-
-index = ['int_corr', 'attr1_1', 'sinc1_1', 'intel1_1',
-       'fun1_1', 'amb1_1', 'shar1_1', 'attr2_1', 'sinc2_1', 'intel2_1',
-       'fun2_1', 'amb2_1', 'shar2_1', 'attr3_1', 'sinc3_1', 'fun3_1',
-       'intel3_1', 'amb3_1', 'attr1_1.1', 'sinc1_1.1', 'intel1_1.1',
-       'fun1_1.1', 'amb1_1.1', 'shar1_1.1', 'attr2_1.1', 'sinc2_1.1',
-       'intel2_1.1', 'fun2_1.1', 'amb2_1.1', 'shar2_1.1', 'attr3_1.1',
-       'sinc3_1.1', 'fun3_1.1', 'intel3_1.1', 'amb3_1.1', 'com_attr',
-       'com_sinc', 'com_intel', 'com_fun', 'com_amb', 'com_shar', 'com_like']
-
-feature_importances = pd.Series(classifier.feature_importances_, index=index)
-feature_importances.sort_values(ascending=False)
-ax = feature_importances.plot(kind='bar', figsize = (15,10))
-ax.set(ylabel='Importance (Gini Coefficient)', title='Feature importances');
-
-dataset = dataset[['match', 'int_corr', 'attr1_1', 'sinc1_1',
-       'intel1_1', 'fun1_1', 'amb1_1', 'shar1_1', 'attr2_1', 'sinc2_1',
-       'intel2_1', 'fun2_1', 'amb2_1', 'shar2_1', 'attr3_1', 'sinc3_1',
-       'fun3_1', 'intel3_1', 'amb3_1', 'attr1_1.1', 'sinc1_1.1', 'intel1_1.1',
-       'fun1_1.1', 'amb1_1.1', 'shar1_1.1', 'attr2_1.1', 'sinc2_1.1',
-       'intel2_1.1', 'fun2_1.1', 'amb2_1.1', 'shar2_1.1', 'attr3_1.1',
-       'sinc3_1.1', 'fun3_1.1', 'intel3_1.1', 'amb3_1.1']]
-
-dataset.shape
-
-X = dataset.iloc[:, 1:37].values
-y = dataset.iloc[:, 0].values
-
-# Splitting the dataset into the Training set and Test set
-from sklearn.cross_validation import train_test_split
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.25, random_state = 0)
-
-# Feature Scaling
-from sklearn.preprocessing import StandardScaler
-sc = StandardScaler()
-X_train = sc.fit_transform(X_train)
-X_test = sc.transform(X_test)
-
-# Fitting Random Forest Classification to the Training set
-from sklearn.ensemble import RandomForestClassifier
-classifier = RandomForestClassifier(n_estimators = 10, criterion = 'entropy', random_state = 0)
-classifier.fit(X_train, y_train)
-
-# Predicting the Test set results
-y_pred = classifier.predict(X_test)
-
-# Making the Confusion Matrix
-from sklearn.metrics import confusion_matrix
-cm = confusion_matrix(y_test, y_pred)
-
-cm
-
-accuracies = cross_val_score(estimator = classifier, X = X_train, y = y_train, cv = 10)
-accuracies.mean()
-accuracies.std()
-
-accuracies
-
-accuracies.mean()
-
-classifier.feature_importances_
-
-classifier.feature_importances_.sum()
-
-index = ['int_corr', 'attr1_1', 'sinc1_1',
-       'intel1_1', 'fun1_1', 'amb1_1', 'shar1_1', 'attr2_1', 'sinc2_1',
-       'intel2_1', 'fun2_1', 'amb2_1', 'shar2_1', 'attr3_1', 'sinc3_1',
-       'fun3_1', 'intel3_1', 'amb3_1', 'attr1_1.1', 'sinc1_1.1', 'intel1_1.1',
-       'fun1_1.1', 'amb1_1.1', 'shar1_1.1', 'attr2_1.1', 'sinc2_1.1',
-       'intel2_1.1', 'fun2_1.1', 'amb2_1.1', 'shar2_1.1', 'attr3_1.1',
-       'sinc3_1.1', 'fun3_1.1', 'intel3_1.1', 'amb3_1.1']
-
-feature_importances = pd.Series(classifier.feature_importances_, index=index)
-feature_importances.sort_values(ascending=False)
-ax = feature_importances.plot(kind='bar', figsize = (15, 10))
-ax.set(ylabel='Importance (Gini Coefficient)', title='Feature importances');
 ```
+
+The full code can be accessed using this [link to repository](https://github.com/hr23232323/love-at-first-swipe)
+
 
 ### Jekyll Themes
 
