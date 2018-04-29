@@ -1,4 +1,13 @@
-## Welcome to GitHub Pages
+## About the project
+We live in a world that is increasingly focused around technology which impacts all aspects of our lives - and dating is no exception. There are over thousands of different online dating apps that people can choose to use. These apps use different algorithms and themes to match people based on attributes such as similar interests, sharing the same values, and income. In our research, we are seeking to understand which attributes are most important to a successful match. This will benefit people who are seeking a partner but are unsure of what attributes to prioritize. We utilized machine learning techniques such as decision tree classification and principal component analysis to predict to predict whether or not two people would match based on how they rated each other. 
+
+This project was completed as part of a requirement for DS 3001: Foundations of Data Science at Worcester Polytechnic Institute. 
+
+## The Data
+The dataset was collected by Columbia Business School from 2002 and 2004 to determine what attributes participants liked about their date at the end of a speed dating round. Participants rated their dates based on attractiveness, sincerity, intelligence, fun, ambition, shared interests. The dataset also has preliminary data on participants’ answers to a questionnaire before participating in the process. This preliminary data includes demographics, dating habits, self-perception across key attributes, beliefs on what others fine valuable in a date, lifestyle information. 
+
+## Attribute 
+
 
 You can use the [editor on GitHub](https://github.com/hr23232323/love-at-first-swipe/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
 
