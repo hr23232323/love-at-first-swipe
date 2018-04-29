@@ -82,11 +82,9 @@ for index_1, row_1 in dataset.iterrows():
 |:--:| 
 | *Screenshot of scattered heatmap showing how much the participant liked their date on the x axis, and how many shared interests on the y axis. Red points indicate a match and blue points indicate no match.* |
 
-You can use the [editor on GitHub](https://github.com/hr23232323/love-at-first-swipe/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
-
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
 
 ## Machine Learning
+To design our machine learning algorithm we used random forest classification.
 
 ```markdown
 import numpy as np
