@@ -1,5 +1,5 @@
 ## About the project
-We live in a world that is increasingly focused around technology which impacts all aspects of our lives - and dating is no exception. There are over thousands of different online dating apps that people can choose to use. These apps use different algorithms and themes to match people based on attributes such as similar interests, sharing the same values, and income. In our research, we are seeking to understand which attributes are most important to a successful match. This will benefit people who are seeking a partner but are unsure of what attributes to prioritize. **We utilized machine learning techniques such as decision tree classification and principal component analysis to predict to predict whether or not two people would match based on how they rated each other.** 
+We live in a world that is increasingly focused around technology which impacts all aspects of our lives - and dating is no exception. There are over thousands of different online dating apps that people can choose to use. These apps use different algorithms and themes to match people based on attributes such as similar interests, sharing the same values, and income. In our research, we are seeking to understand which attributes are most important to a successful match. This will benefit people who are seeking a partner but are unsure of what attributes to prioritize. **We utilized machine learning techniques such as decision tree classification to predict to predict whether or not two people would match based on how they rated each other.** 
 
 This project was completed as part of a requirement for DS 3001: Foundations of Data Science at Worcester Polytechnic Institute. 
 
@@ -117,5 +117,8 @@ The full code can be accessed using this [link to repository](https://github.com
 | ![Feature Importances](/Images/dating_feature_imp.png) |
 |:--:| 
 | *Screenshot of bar graph representing the feature importances in the random forest classifier. It can be appreciated that the factors that influence prediction the most are the degree of attractiveness that a person is rated on and how much "fun" they are.* |
+
+## Conclusion
+
 
 
