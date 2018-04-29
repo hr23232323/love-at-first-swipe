@@ -10,48 +10,39 @@ The dataset was collected by Columbia Business School from 2002 and 2004 to dete
 
 | ![Before image](/Images/before.JPG) |
 |:--:| 
-| *Screenshot showing the way data was organized before preprocessing. Note that each row represented one individual and only their partner's ID.* |
+| *Screenshot showing the way data was organized before preprocessing. Note that each row represented one individual and only their partner's ID."* |
 
 The original dataset contained information about how each participant felt about their dates. Each participant was given a unique ID ('iid') and their partner's unique ID ('pid'). Together, these could be used to identify pairs. In our data cleaning process, we used these two IDs to match up participants and created a processed dataset where each row represented one pair. After preprocessing, the dataset looked like this:
 
 | ![After image](/Images/after.JPG) |
 |:--:| 
-| *Screenshot showing the way data was organized after preprocessing. Note that each row represents both individuals in a pair and their respective ID's.* |
+| *Screenshot showing the way data was organized after preprocessing. Note that each row represents both individuals in a pair and their respective ID's."* |
 
-
+Here's an excerpt from the preprocessing code which converted the raw data (each row represents one individual) to our final data format (each row represents a pair of individuals). 
 
 
 ```markdown
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-import sys
-
-
-dataset = pd.read_csv('cleaned_data.csv')
-
-new_df = pd.concat([dataset.iloc[0], dataset.iloc[1]], axis = 0)
-
 ## Iterate through the dataset, find pairs and create new dataframe
-## With partners
+## with partners on the same row
 for index_1, row_1 in dataset.iterrows():
     for index_2, row_2 in dataset.iterrows():
+        ## Acount for rows being deleted
         if(index_1 >= dataset.shape[0] or index_2 >= dataset.shape[0]):
             break
+        ## Check for pairs
         if((dataset.iloc[index_1]['iid'] == dataset.iloc[index_2]['pid']) and (dataset.iloc[index_1]['pid'] == dataset.iloc[index_2]['iid'])):
-            #print(index_1, index_2)
+            ## If pair is found, create a new row for the post processed dataset
             new_row = pd.concat([dataset.iloc[index_1], dataset.iloc[index_2]], axis = 0)
+            ## Delete rows already used (for efficiency) and reset index
             dataset.drop(index_1, inplace=True)
             dataset.drop(index_2, inplace=True)
             dataset = dataset.reset_index(drop=True)
+            ## Concatenate new row to the post processed dataset
             new_df = pd.concat([new_df, new_row], axis = 1)
-            
+
+    ## So we can see status while code runs        
     sys.stdout.write('.'); sys.stdout.flush();
-    
-    
-    
-new_df = new_df.T
-new_df.to_csv('combined_data_no_repeats.csv')
+
 ```
 
 ## Insights
