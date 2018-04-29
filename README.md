@@ -18,7 +18,7 @@ The original dataset contained information about how each participant felt about
 |:--:| 
 | *Screenshot showing the way data was organized after preprocessing. Note that each row represents both individuals in a pair and their respective ID's."* |
 
-Here's an excerpt from the preprocessing code which converted the raw data (each row represents one individual) to our final data format (each row represents a pair of individuals). <br>
+Here's an excerpt from the preprocessing code which converted the raw data (each row represents one individual) to our final data format (each row represents a pair of individuals). <br> <br>
 
 
 ```markdown
