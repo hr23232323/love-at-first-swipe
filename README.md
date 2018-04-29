@@ -52,7 +52,6 @@ for index_1, row_1 in dataset.iterrows():
 | *Screenshot of scattered heatmap showing how much the participant liked their date on the x axis, and how fun they thought they were on the y axis. Red points indicate a match and blue points indicate no match.* | <br>
 
 ### Attractive vs Like
-abc
 | ![Attractive vs like image](/Images/attractive_vs_like.png) |
 |:---:| 
 | *Screenshot of scattered heatmap showing how much the participant liked their date on the x axis, and how attractive they thought they were on the y axis. Red points indicate a match and blue points indicate no match.* | <br>
