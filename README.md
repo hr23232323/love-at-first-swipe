@@ -10,13 +10,13 @@ The dataset was collected by Columbia Business School from 2002 and 2004 to dete
 
 | ![Before image](/Images/before.JPG) |
 |:--:| 
-| *Screenshot showing the way data was organized before preprocessing. Note that each row represented one individual and only their partner's ID."* |
+| *Screenshot showing the way data was organized before preprocessing. Note that each row represented one individual and only their partner's ID.* |
 
 <br> <br> The original dataset contained information about how each participant felt about their dates. Each participant was given a unique ID ('iid') and their partner's unique ID ('pid'). Together, these could be used to identify pairs. In our data cleaning process, we used these two IDs to match up participants and created a processed dataset where each row represented one pair. After preprocessing, the dataset looked like this:
 
 | ![After image](/Images/after.JPG) |
 |:--:| 
-| *Screenshot showing the way data was organized after preprocessing. Note that each row represents both individuals in a pair and their respective ID's."* |
+| *Screenshot showing the way data was organized after preprocessing. Note that each row represents both individuals in a pair and their respective ID's.* |
 
 <br><br>Here's an excerpt from the preprocessing code which converted the raw data (each row represents one individual) to our final data format (each row represents a pair of individuals). <br>
 
@@ -49,12 +49,12 @@ for index_1, row_1 in dataset.iterrows():
 ### Fun vs Like
 | ![Fun vs like image](/Images/fun_vs_like.png) |
 |:--:| 
-| *Screenshot of scattered heatmap showing how much the participant liked their date on the x axis, and how fun they thought they were on the y axis. Red points indicate a match and blue points indicate no match. * |
+| *Screenshot of scattered heatmap showing how much the participant liked their date on the x axis, and how fun they thought they were on the y axis. Red points indicate a match and blue points indicate no match.
 
 ### Attractive vs Like
 | ![Attractive vs like image](/Images/attractive_vs_like.png) |
 |:--:| 
-| *Screenshot of scattered heatmap showing how much the participant liked their date on the x axis, and how attractive they thought they were on the y axis. Red points indicate a match and blue points indicate no match. * |
+| *Screenshot of scattered heatmap showing how much the participant liked their date on the x axis, and how attractive they thought they were on the y axis. Red points indicate a match and blue points indicate no match. * 
 
 ### Ambition vs Like
 | ![ambition vs like image](/Images/ambition_vs_like.png) |
