@@ -14,6 +14,10 @@ The dataset was collected by Columbia Business School from 2002 and 2004 to dete
 
 The original dataset contained information about how each participant felt about their dates. Each participant was given a unique ID ('iid') and their partner's unique ID ('pid'). Together, these could be used to identify pairs. In our data cleaning process, we used these two IDs to match up participants and created a processed dataset where each row represented one pair. After preprocessing, the dataset looked like this:
 
+| ![After image](/Images/after.JPG) |
+|:--:| 
+| *Screenshot showing the way data was organized after preprocessing. Note that each row represents both individuals in a pair and their respective ID's."* |
+
 
 
 
